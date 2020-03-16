@@ -25,12 +25,14 @@ Components
 .. |link4| replace:: ``JsonSerializerTrait``
 .. |link5| replace:: ``ModifierPoolTrait``
 .. |link6| replace:: ``ArrayTrait``
+.. |link7| replace:: ``RedirectTrait``
 .. _link1: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Container/DataContainerTrait.php
 .. _link2: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Escaper/HtmlEscaperTrait.php
 .. _link3: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Event/EventManagerTrait.php
 .. _link4: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Serializer/JsonSerializerTrait.php
 .. _link5: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Ui/DataProvider/Modifier/ModifierPoolTrait.php
 .. _link6: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Utils/ArrayTrait.php
+.. _link7: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Http/Request/RedirectTrait.php
 
 * |link1|_
 * |link2|_
@@ -38,3 +40,4 @@ Components
 * |link4|_
 * |link5|_
 * |link6|_
+* |link7|_
