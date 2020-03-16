@@ -7,8 +7,7 @@ Module Components
 Description
 -----------
 
-``AuroraExtensions_ModuleComponents`` is, as one could imagine, comprised of
-components (classes, interfaces, traits) useful to Magento extension developers.
+Flexible, reusable components for Magento extension development.
 
 Installation
 ------------
