@@ -26,6 +26,7 @@ Components
 .. |link5| replace:: ``ModifierPoolTrait``
 .. |link6| replace:: ``ArrayTrait``
 .. |link7| replace:: ``RedirectTrait``
+.. |link8| replace:: ``MessageManagerTrait``
 .. _link1: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Container/DataContainerTrait.php
 .. _link2: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Escaper/HtmlEscaperTrait.php
 .. _link3: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Event/EventManagerTrait.php
@@ -33,6 +34,7 @@ Components
 .. _link5: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Ui/DataProvider/Modifier/ModifierPoolTrait.php
 .. _link6: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Utils/ArrayTrait.php
 .. _link7: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Http/Request/RedirectTrait.php
+.. _link8: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Message/MessageManagerTrait.php
 
 * |link1|_
 * |link2|_
@@ -41,3 +43,4 @@ Components
 * |link5|_
 * |link6|_
 * |link7|_
+* |link8|_
