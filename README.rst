@@ -27,7 +27,7 @@ Components
 .. _link1: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Container/DataContainerTrait.php
 .. _link2: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Escaper/HtmlEscaperTrait.php
 .. _link3: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Serializer/JsonSerializerTrait.php
-.. _link3: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Utils/ArrayTrait.php
+.. _link4: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Utils/ArrayTrait.php
 
 * |link1|_
 * |link2|_
