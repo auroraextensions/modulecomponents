@@ -27,6 +27,7 @@ Components
 .. |link6| replace:: ``ArrayTrait``
 .. |link7| replace:: ``RedirectTrait``
 .. |link8| replace:: ``MessageManagerTrait``
+.. |link9| replace:: ``ExceptionFactory``
 .. _link1: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Container/DataContainerTrait.php
 .. _link2: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Escaper/HtmlEscaperTrait.php
 .. _link3: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Event/EventManagerTrait.php
@@ -35,6 +36,7 @@ Components
 .. _link6: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Utils/ArrayTrait.php
 .. _link7: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Http/Request/RedirectTrait.php
 .. _link8: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Message/MessageManagerTrait.php
+.. _link9: https://github.com/auroraextensions/modulecomponents/blob/master/Exception/ExceptionFactory.php
 
 * |link1|_
 * |link2|_
@@ -44,3 +46,4 @@ Components
 * |link6|_
 * |link7|_
 * |link8|_
+* |link9|_
