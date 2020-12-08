@@ -10,7 +10,7 @@
  * It is also available on the Internet at the following URL:
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
- * @package       AuroraExtensions_ModuleComponents
+ * @package       AuroraExtensions\ModuleComponents\Component\Message
  * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
  * @license       MIT
  */
@@ -18,9 +18,11 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Component\Message;
 
+use const null;
+
 trait MessageManagerTrait
 {
-    /** @property Magento\Framework\Message\ManagerInterface $messageManager */
+    /** @var Magento\Framework\Message\ManagerInterface $messageManager */
     private $messageManager;
 
     /**
@@ -30,8 +32,7 @@ trait MessageManagerTrait
      */
     private function addErrorMessage($message, string $group = null): void
     {
-        $this->messageManager
-            ->addErrorMessage($message, $group);
+        $this->messageManager->addErrorMessage($message, $group);
     }
 
     /**
@@ -41,8 +42,7 @@ trait MessageManagerTrait
      */
     private function addNoticeMessage($message, string $group = null): void
     {
-        $this->messageManager
-            ->addNoticeMessage($message, $group);
+        $this->messageManager->addNoticeMessage($message, $group);
     }
 
     /**
@@ -52,8 +52,7 @@ trait MessageManagerTrait
      */
     private function addSuccessMessage($message, string $group = null): void
     {
-        $this->messageManager
-            ->addSuccessMessage($message, $group);
+        $this->messageManager->addSuccessMessage($message, $group);
     }
 
     /**
@@ -63,8 +62,7 @@ trait MessageManagerTrait
      */
     private function addWarningMessage($message, string $group = null): void
     {
-        $this->messageManager
-            ->addWarningMessage($message, $group);
+        $this->messageManager->addWarningMessage($message, $group);
     }
 
     /**
@@ -79,12 +77,11 @@ trait MessageManagerTrait
         string $group = null
     ): void
     {
-        $this->messageManager
-            ->addComplexErrorMessage(
-                $identifier,
-                $data,
-                $group
-            );
+        $this->messageManager->addComplexErrorMessage(
+            $identifier,
+            $data,
+            $group
+        );
     }
 
     /**
@@ -99,12 +96,11 @@ trait MessageManagerTrait
         string $group = null
     ): void
     {
-        $this->messageManager
-            ->addComplexNoticeMessage(
-                $identifier,
-                $data,
-                $group
-            );
+        $this->messageManager->addComplexNoticeMessage(
+            $identifier,
+            $data,
+            $group
+        );
     }
 
     /**
@@ -119,12 +115,11 @@ trait MessageManagerTrait
         string $group = null
     ): void
     {
-        $this->messageManager
-            ->addComplexSuccessMessage(
-                $identifier,
-                $data,
-                $group
-            );
+        $this->messageManager->addComplexSuccessMessage(
+            $identifier,
+            $data,
+            $group
+        );
     }
 
     /**
@@ -139,11 +134,10 @@ trait MessageManagerTrait
         string $group = null
     ): void
     {
-        $this->messageManager
-            ->addComplexWarningMessage(
-                $identifier,
-                $data,
-                $group
-            );
+        $this->messageManager->addComplexWarningMessage(
+            $identifier,
+            $data,
+            $group
+        );
     }
 }

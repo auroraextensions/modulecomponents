@@ -10,7 +10,7 @@
  * It is also available on the Internet at the following URL:
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
- * @package       AuroraExtensions_ModuleComponents
+ * @package       AuroraExtensions\ModuleComponents\Component\Ui\DataProvider\Modifier
  * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
  * @license       MIT
  */
@@ -22,11 +22,11 @@ use Magento\Ui\DataProvider\Modifier\PoolInterface;
 
 /**
  * @api
- * @since 1.0.0
+ * @since 100.0.0
  */
 trait ModifierPoolTrait
 {
-    /** @property PoolInterface $modifierPool */
+    /** @var PoolInterface $modifierPool */
     private $modifierPool;
 
     /**
@@ -42,7 +42,6 @@ trait ModifierPoolTrait
      */
     private function getModifiers(): array
     {
-        return $this->getModifierPool()
-            ->getModifiersInstances();
+        return $this->modifierPool->getModifiersInstances();
     }
 }

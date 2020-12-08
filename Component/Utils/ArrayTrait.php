@@ -10,7 +10,7 @@
  * It is also available on the Internet at the following URL:
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
- * @package       AuroraExtensions_ModuleComponents
+ * @package       AuroraExtensions\ModuleComponents\Component\Utils
  * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
  * @license       MIT
  */
@@ -18,8 +18,12 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Component\Utils;
 
+use function array_merge;
+use function is_array;
+
 /**
  * @api
+ * @since 100.0.0
  */
 trait ArrayTrait
 {
