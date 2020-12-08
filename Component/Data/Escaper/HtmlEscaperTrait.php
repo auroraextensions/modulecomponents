@@ -10,7 +10,7 @@
  * It is also available on the Internet at the following URL:
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
- * @package       AuroraExtensions_ModuleComponents
+ * @package       AuroraExtensions\ModuleComponents\Component\Data\Escaper
  * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
  * @license       MIT
  */
@@ -23,16 +23,15 @@ namespace AuroraExtensions\ModuleComponents\Component\Data\Escaper;
  */
 trait HtmlEscaperTrait
 {
-    /** @property Escaper $escaper */
+    /** @var Escaper $escaper */
     private $escaper;
 
     /**
      * @param mixed $data
      * @return mixed
      */
-    public function escapeHtml($data)
+    private function escapeHtml($data)
     {
-        return $this->escaper
-            ->escapeHtml($data);
+        return $this->escaper->escapeHtml($data);
     }
 }

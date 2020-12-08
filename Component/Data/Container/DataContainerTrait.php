@@ -10,7 +10,7 @@
  * It is also available on the Internet at the following URL:
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
- * @package       AuroraExtensions_ModuleComponents
+ * @package       AuroraExtensions\ModuleComponents\Component\Data\Container
  * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
  * @license       MIT
  */
@@ -22,7 +22,7 @@ use Magento\Framework\DataObject;
 
 trait DataContainerTrait
 {
-    /** @property DataObject $container */
+    /** @var DataObject|null $container */
     private $container;
 
     /**

@@ -10,7 +10,7 @@
  * It is also available on the Internet at the following URL:
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
- * @package       AuroraExtensions_ModuleComponents
+ * @package       AuroraExtensions\ModuleComponents\Component\Data\Serializer
  * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
  * @license       MIT
  */
@@ -18,14 +18,17 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Component\Data\Serializer;
 
+use Exception;
 use InvalidArgumentException;
+
+use const null;
 
 /**
  * @see Magento\Framework\Serialize\Serializer\Json
  */
 trait JsonSerializerTrait
 {
-    /** @property Json $serializer */
+    /** @var Json $serializer */
     private $serializer;
 
     /**
@@ -35,9 +38,8 @@ trait JsonSerializerTrait
     private function fromJson(string $json): ?array
     {
         try {
-            return (array) $this->serializer
-                ->unserialize($json);
-        } catch (InvalidArgumentException $e) {
+            return (array) $this->serializer->unserialize($json);
+        } catch (InvalidArgumentException | Exception $e) {
             return null;
         }
     }
@@ -49,9 +51,8 @@ trait JsonSerializerTrait
     private function toJson(array $data = []): ?string
     {
         try {
-            return $this->serializer
-                ->serialize($data);
-        } catch (InvalidArgumentException $e) {
+            return $this->serializer->serialize($data);
+        } catch (InvalidArgumentException | Exception $e) {
             return null;
         }
     }
