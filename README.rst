@@ -28,6 +28,7 @@ Components
 .. |link7| replace:: ``RedirectTrait``
 .. |link8| replace:: ``MessageManagerTrait``
 .. |link9| replace:: ``ExceptionFactory``
+.. |link10| replace:: ``VirtualSelect``
 .. _link1: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Container/DataContainerTrait.php
 .. _link2: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Data/Escaper/HtmlEscaperTrait.php
 .. _link3: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Event/EventManagerTrait.php
@@ -37,6 +38,7 @@ Components
 .. _link7: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Http/Request/RedirectTrait.php
 .. _link8: https://github.com/auroraextensions/modulecomponents/blob/master/Component/Message/MessageManagerTrait.php
 .. _link9: https://github.com/auroraextensions/modulecomponents/blob/master/Exception/ExceptionFactory.php
+.. _link10: https://github.com/auroraextensions/modulecomponents/blob/master/Model/Config/Source/Select/VirtualSelect.php
 
 * |link1|_
 * |link2|_
@@ -47,3 +49,4 @@ Components
 * |link7|_
 * |link8|_
 * |link9|_
+* |link10|_
