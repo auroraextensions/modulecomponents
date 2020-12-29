@@ -52,7 +52,7 @@ class LocalizedScopeDeploymentConfig implements LocalizedScopeDeploymentConfigIn
         DeploymentConfig $deploymentConfig,
         string $delimiter = self::DELIMITER,
         string $scope = null
-    {
+    ) {
         $this->deploymentConfig = $deploymentConfig;
         $this->delimiter = $delimiter;
         $this->scope = $scope ?? '';
