@@ -74,6 +74,6 @@ class LocalizedScopeDeploymentConfig implements LocalizedScopeDeploymentConfigIn
 
         /** @var string $xpath */
         $xpath = implode($this->delimiter, $merge);
-        return $this->deploymentConfig->get($xpath);
+        return !empty($xpath) ? $this->deploymentConfig->get($xpath) : null;
     }
 }
