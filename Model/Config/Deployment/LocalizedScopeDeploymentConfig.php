@@ -10,9 +10,9 @@
  * It is also available on the Internet at the following URL:
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
- * @package       AuroraExtensions\ModuleComponents\Model\Config\Deployment
- * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
- * @license       MIT
+ * @package     AuroraExtensions\ModuleComponents\Model\Config\Deployment
+ * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
+ * @license     MIT
  */
 declare(strict_types=1);
 
@@ -21,7 +21,6 @@ namespace AuroraExtensions\ModuleComponents\Model\Config\Deployment;
 use AuroraExtensions\ModuleComponents\Api\LocalizedScopeDeploymentConfigInterface;
 use Magento\Framework\App\DeploymentConfig;
 
-use const null;
 use function array_filter;
 use function array_merge;
 use function explode;
@@ -74,6 +73,6 @@ class LocalizedScopeDeploymentConfig implements LocalizedScopeDeploymentConfigIn
 
         /** @var string $xpath */
         $xpath = implode($this->delimiter, $merge);
-        return $this->deploymentConfig->get($xpath);
+        return !empty($xpath) ? $this->deploymentConfig->get($xpath) : null;
     }
 }

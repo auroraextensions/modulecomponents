@@ -10,13 +10,15 @@
  * It is also available on the Internet at the following URL:
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
- * @package       AuroraExtensions\ModuleComponents\Component\Event
- * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
- * @license       MIT
+ * @package     AuroraExtensions\ModuleComponents\Component\Event
+ * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
+ * @license     MIT
  */
 declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Component\Event;
+
+use Magento\Framework\Event\ManagerInterface;
 
 /**
  * @api
@@ -24,7 +26,7 @@ namespace AuroraExtensions\ModuleComponents\Component\Event;
  */
 trait EventManagerTrait
 {
-    /** @var Magento\Framework\Event\ManagerInterface $eventManager */
+    /** @var ManagerInterface $eventManager */
     private $eventManager;
 
     /**

@@ -10,19 +10,23 @@
  * It is also available on the Internet at the following URL:
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
- * @package       AuroraExtensions\ModuleComponents\Component\Message
- * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
- * @license       MIT
+ * @package     AuroraExtensions\ModuleComponents\Component\Message
+ * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
+ * @license     MIT
  */
 declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Component\Message;
 
-use const null;
+use Magento\Framework\Message\ManagerInterface;
 
+/**
+ * @api
+ * @since 100.0.0
+ */
 trait MessageManagerTrait
 {
-    /** @var Magento\Framework\Message\ManagerInterface $messageManager */
+    /** @var ManagerInterface $messageManager */
     private $messageManager;
 
     /**
@@ -75,8 +79,7 @@ trait MessageManagerTrait
         string $identifier,
         array $data = [],
         string $group = null
-    ): void
-    {
+    ): void {
         $this->messageManager->addComplexErrorMessage(
             $identifier,
             $data,
@@ -94,8 +97,7 @@ trait MessageManagerTrait
         string $identifier,
         array $data = [],
         string $group = null
-    ): void
-    {
+    ): void {
         $this->messageManager->addComplexNoticeMessage(
             $identifier,
             $data,
@@ -113,8 +115,7 @@ trait MessageManagerTrait
         string $identifier,
         array $data = [],
         string $group = null
-    ): void
-    {
+    ): void {
         $this->messageManager->addComplexSuccessMessage(
             $identifier,
             $data,
@@ -132,8 +133,7 @@ trait MessageManagerTrait
         string $identifier,
         array $data = [],
         string $group = null
-    ): void
-    {
+    ): void {
         $this->messageManager->addComplexWarningMessage(
             $identifier,
             $data,

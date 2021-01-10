@@ -1,6 +1,6 @@
 <?php
 /**
- * ArrayTrait.php
+ * BitmaskTrait.php
  *
  * NOTICE OF LICENSE
  *
@@ -18,36 +18,34 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Component\Utils;
 
-use function array_merge;
-use function is_array;
-
 /**
- * @api
- * @since 100.0.0
+ * @since 100.0.6
  */
-trait ArrayTrait
+trait BitmaskTrait
 {
+    /** @var int $bitmask */
+    private $bitmask;
+
     /**
-     * @param array $data
-     * @return array
+     * @param int $bits
+     * @return bool
      */
-    public function flattenArray(array $data = []): array
+    private function hasBits(int $bits): bool
     {
-        /** @var array $result */
-        $result = [];
+        return ($this->bitmask & $bits) === $bits;
+    }
 
-        /** @var mixed $value */
-        foreach ($data as $value) {
-            if (is_array($value)) {
-                $result = array_merge(
-                    $result,
-                    $this->flattenArray($value)
-                );
-            } else {
-                $result[] = $value;
-            }
+    /**
+     * @param int $bits
+     * @param bool|int $value
+     * @return void
+     */
+    private function setBits(int $bits, $value): void
+    {
+        if ($value) {
+            $this->bitmask |= $bits;
+        } else {
+            $this->bitmask &= ~$bits;
         }
-
-        return $result;
     }
 }
