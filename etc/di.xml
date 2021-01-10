@@ -11,9 +11,9 @@
  * It is also available on the Internet at the following URL:
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
- * @package       AuroraExtensions\ModuleComponents
- * @copyright     Copyright (C) 2020 Aurora Extensions <support@auroraextensions.com>
- * @license       MIT
+ * @package     AuroraExtensions\ModuleComponents
+ * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
+ * @license     MIT
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
