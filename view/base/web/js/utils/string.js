@@ -13,7 +13,9 @@
  * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
  * @license     MIT
  */
-define(['jquery'], function ($) {
+define([
+    'AuroraExtensions_ModuleComponents/js/utils/type'
+], function (typeUtils) {
     'use strict';
 
     /**
@@ -32,8 +34,22 @@ define(['jquery'], function ($) {
          * @return {Array}
          */
         filter: function (pieces, callback) {
-            callback = $.isFunction(callback) ? callback : empty;
+            callback = typeUtils.isFunction(callback) ? callback : empty;
             return callback(pieces);
+        },
+        /**
+         * @param {String} value
+         * @param {String} delim
+         * @return {Array}
+         */
+        split: function (value, delim) {
+            delim = delim || '';
+
+            if (!typeUtils.isString(value)) {
+                value = typeUtils.toString(value);
+            }
+
+            return value.split(delim);
         },
         /**
          * @param {String} value
