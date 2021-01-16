@@ -44,16 +44,16 @@ class HashContext
     private $digest;
 
     /**
-     * @param string $algo
      * @param string|null $data
+     * @param string $algo
      * @return void
      */
     public function __construct(
-        string $algo = self::HASH_ALGO,
-        string $data = null
+        string $data = null,
+        string $algo = self::HASH_ALGO
     ) {
-        $this->algo = $algo;
         $this->data = $data ?? random_bytes(self::MIN_BYTES);
+        $this->algo = $algo;
         $this->initialize();
     }
 
