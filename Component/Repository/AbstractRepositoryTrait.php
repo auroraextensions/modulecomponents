@@ -18,6 +18,10 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Component\Repository;
 
+use AuroraExtensions\ModuleComponents\{
+    Api\AbstractCollectionInterface,
+    Api\AbstractCollectionInterfaceFactory
+};
 use Magento\Framework\{
     Api\Filter,
     Api\SearchCriteriaInterface,
@@ -25,27 +29,23 @@ use Magento\Framework\{
     Api\SearchResultsInterfaceFactory,
     Api\Search\FilterGroup,
     Api\SortOrder,
-    DataObject,
-    Data\Collection,
-    Data\CollectionFactory
+    DataObject
 };
 
 trait AbstractRepositoryTrait
 {
-    /** @var CollectionFactory $collectionFactory */
+    /** @var AbstractCollectionInterfaceFactory $collectionFactory */
     private $collectionFactory;
 
     /** @var SearchResultsInterfaceFactory $searchResultsFactory */
     private $searchResultsFactory;
 
     /**
-     * @param \Magento\Framework\Api\Search\FilterGroup $group
-     * @param \Magento\Framework\Data\Collection $collection
-     * @return void
+     * {@inheritdoc}
      */
     public function addFilterGroupToCollection(
         FilterGroup $group,
-        Collection $collection
+        AbstractCollectionInterface $collection
     ): void {
         /** @var array $fields */
         $fields = [];
@@ -74,8 +74,7 @@ trait AbstractRepositoryTrait
     }
 
     /**
-     * @param string $direction
-     * @return string
+     * {@inheritdoc}
      */
     public function getDirection(
         string $direction = SortOrder::SORT_DESC
@@ -86,12 +85,11 @@ trait AbstractRepositoryTrait
     }
 
     /**
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $criteria
-     * @return \Magento\Framework\Api\SearchResultsInterface
+     * {@inheritdoc}
      */
     public function getList(SearchCriteriaInterface $criteria): SearchResultsInterface
     {
-        /** @var Collection $collection */
+        /** @var AbstractCollectionInterface $collection */
         $collection = $this->collectionFactory->create();
 
         /** @var FilterGroup[] $groups */
