@@ -27,8 +27,8 @@ use Magento\Framework\{
 interface AbstractRepositoryInterface
 {
     /**
-     * @param FilterGroup $group
-     * @param AbstractCollectionInterface $collection
+     * @param \Magento\Framework\Api\Search\FilterGroup $group
+     * @param \AuroraExtensions\ModuleComponents\Api\AbstractCollectionInterface $collection
      * @return void
      */
     public function addFilterGroupToCollection(
