@@ -20,11 +20,17 @@ namespace AuroraExtensions\ModuleComponents\Api;
 
 interface ContextAwareRequestParameterResolverInterface
 {
-    /** @constant string ENTITY_KEY */
-    public const ENTITY_KEY = 'id';
+    /** @constant string ENTITY_PARAM_KEY */
+    public const ENTITY_PARAM_KEY = 'id';
 
-    /** @constant string SECRET_KEY */
-    public const SECRET_KEY = 'token';
+    /** @constant string ENTITY_TYPE_KEY */
+    public const ENTITY_TYPE_KEY = 'identityType';
+
+    /** @constant string SECRET_PARAM_KEY */
+    public const SECRET_PARAM_KEY = 'token';
+
+    /** @constant string SECRET_TYPE_KEY */
+    public const SECRET_TYPE_KEY = 'secretType';
 
     /** @constant string WILDCARD */
     public const WILDCARD = '*';
