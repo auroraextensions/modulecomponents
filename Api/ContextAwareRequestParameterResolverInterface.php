@@ -1,6 +1,6 @@
 <?php
 /**
- * LocalizedScopeRequestParametizerInterface.php
+ * ContextAwareRequestParameterResolverInterface.php
  *
  * NOTICE OF LICENSE
  *
@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Api;
 
-interface LocalizedScopeRequestParametizerInterface
+interface ContextAwareRequestParameterResolverInterface
 {
-    /** @constant string IDENTITY_KEY */
-    public const IDENTITY_KEY = 'id';
+    /** @constant string ENTITY_KEY */
+    public const ENTITY_KEY = 'id';
 
     /** @constant string SECRET_KEY */
     public const SECRET_KEY = 'token';
@@ -30,22 +30,8 @@ interface LocalizedScopeRequestParametizerInterface
     public const WILDCARD = '*';
 
     /**
-     * @return string
-     */
-    public function getIdentityKey(): string;
-
-    /**
+     * @param string $paramType
      * @return string|null
      */
-    public function getIdentity(): ?string;
-
-    /**
-     * @return string
-     */
-    public function getSecretKey(): string;
-
-    /**
-     * @return string|null
-     */
-    public function getSecret(): ?string;
+    public function resolve(string $paramType): ?string;
 }
