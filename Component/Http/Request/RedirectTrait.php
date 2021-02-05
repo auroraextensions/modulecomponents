@@ -36,14 +36,16 @@ trait RedirectTrait
 
     /**
      * @param string $path
+     * @param array $params
      * @return Redirect
      */
-    public function getRedirectToPath(string $path = '*'): Redirect
-    {
+    public function getRedirectToPath(
+        string $path = '*',
+        array $params = []
+    ): Redirect {
         /** @var Redirect $redirect */
         $redirect = $this->getRedirect();
-        $redirect->setPath($path);
-
+        $redirect->setPath($path, $params);
         return $redirect;
     }
 
@@ -56,7 +58,6 @@ trait RedirectTrait
         /** @var Redirect $redirect */
         $redirect = $this->getRedirect();
         $redirect->setUrl($url);
-
         return $redirect;
     }
 }
