@@ -1,6 +1,6 @@
 <?php
 /**
- * LocalizedScopeRequestParametizer.php
+ * ContextAwareRequestParameterResolver.php
  *
  * NOTICE OF LICENSE
  *
@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace AuroraExtensions\ModuleComponents\Model\Http\Request;
 
 use AuroraExtensions\ModuleComponents\{
-    Api\LocalizedScopeRequestParametizerInterface,
+    Api\ContextAwareRequestParameterResolverInterface,
     Model\Utils\PathUtils
 };
 use Magento\Framework\{
@@ -27,7 +27,7 @@ use Magento\Framework\{
     Stdlib\ArrayManager
 };
 
-class LocalizedScopeRequestParametizer implements LocalizedScopeRequestParametizerInterface
+class ContextAwareRequestParameterResolver implements ContextAwareRequestParameterResolverInterface
 {
     /** @var ArrayManager $arrayManager */
     private $arrayManager;
@@ -35,17 +35,14 @@ class LocalizedScopeRequestParametizer implements LocalizedScopeRequestParametiz
     /** @var array $config */
     private $config;
 
+    /** @var array $paramTypes */
+    private $paramTypes = [];
+
     /** @var PathUtils $pathUtils */
     private $pathUtils;
 
     /** @var RequestInterface $request */
     private $request;
-
-    /** @var string $identityKey */
-    private $identityKey;
-
-    /** @var string $secretKey */
-    private $secretKey;
 
     /**
      * @param ArrayManager $arrayManager
@@ -81,45 +78,24 @@ class LocalizedScopeRequestParametizer implements LocalizedScopeRequestParametiz
         /** @var string $action */
         $action = $this->request->getActionName() ?? self::WILDCARD;
 
-        /** @var string $identityKeyPath */
-        $identityKeyPath = $this->pathUtils->build($route, $controller, $action, 'identityKey');
+        /** @var string $configPath */
+        $configPath = $this->pathUtils->build($route, $controller, $action);
 
-        /** @var string $secretKeyPath */
-        $secretKeyPath = $this->pathUtils->build($route, $controller, $action, 'secretKey');
+        /** @var array $paramTypes */
+        $paramTypes = $this->arrayManager->get($configPath, $this->config, []);
 
-        $this->identityKey = $this->arrayManager->get($identityKeyPath, $this->config, self::IDENTITY_KEY);
-        $this->secretKey = $this->arrayManager->get($secretKeyPath, $this->config, self::SECRET_KEY);
+        /** @var string $paramType */
+        /** @var string $paramName */
+        foreach ($paramTypes as $paramType => $paramName) {
+            $this->paramTypes[$paramType] = $paramName;
+        }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getIdentityKey(): string
+    public function resolve(string $paramType = self::ENTITY_TYPE_KEY): ?string
     {
-        return $this->identityKey;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getIdentity(): ?string
-    {
-        return $this->request->getParam($this->identityKey);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSecretKey(): string
-    {
-        return $this->secretKey;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSecret(): ?string
-    {
-        return $this->request->getParam($this->secretKey);
+        return $this->paramTypes[$paramType] ?? null;
     }
 }
