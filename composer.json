@@ -13,8 +13,8 @@
     "email": "support@auroraextensions.com"
   },
   "require": {
-    "php": "~7.1.0||~7.2.0||~7.3.0||~7.4.0||^8.0||^8.1",
-    "magento/framework": "^100||^101||^102||^103",
+    "php": "^7.1||^8.0",
+    "magento/framework": "*",
     "magento/module-ui": "*"
   },
   "autoload": {

@@ -1,6 +1,6 @@
 <?php
 /**
- * AbstractCollectionInterface.php
+ * AbstractResourceInterface.php
  *
  * NOTICE OF LICENSE
  *
@@ -11,13 +11,13 @@
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
  * @package     AuroraExtensions\ModuleComponents\Api
- * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
+ * @copyright   Copyright (C) 2022 Aurora Extensions <support@auroraextensions.com>
  * @license     MIT
  */
 declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Api;
 
-interface AbstractCollectionInterface extends \IteratorAggregate, \Countable
+interface AbstractResourceInterface
 {
 }
