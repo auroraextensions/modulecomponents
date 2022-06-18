@@ -14,8 +14,7 @@ Installation
 
 .. code-block:: sh
 
-    composer require auroraextensions/modulecomponents:~100.0.0
-    bin/magento module:enable AuroraExtensions_ModuleComponents
+    composer require auroraextensions/modulecomponents:^100
 
 Components
 ----------
