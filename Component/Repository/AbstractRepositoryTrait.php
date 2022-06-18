@@ -11,7 +11,7 @@
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
  * @package     AuroraExtensions\ModuleComponents\Component\Repository
- * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
+ * @copyright   Copyright (C) 2022 Aurora Extensions <support@auroraextensions.com>
  * @license     MIT
  */
 declare(strict_types=1);
@@ -55,19 +55,11 @@ trait AbstractRepositoryTrait
 
         /** @var Filter $filter */
         foreach ($group->getFilters() as $filter) {
+            $fields[] = $filter->getField();
+
             /** @var string $param */
             $param = $filter->getConditionType() ?: 'eq';
-
-            /** @var string $field */
-            $field = $filter->getField();
-
-            /** @var mixed $value */
-            $value = $filter->getValue();
-
-            $fields[] = $field;
-            $params[] = [
-                $param => $value,
-            ];
+            $params[] = [$param => $filter->getValue()];
         }
 
         $collection->addFieldToFilter($fields, $params);
