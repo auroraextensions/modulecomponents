@@ -18,10 +18,6 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Api;
 
-interface AbstractCollectionInterface
+interface AbstractCollectionInterface extends \IteratorAggregate, \Countable
 {
-    /**
-     * @return \Countable
-     */
-    public function getIterator();
 }
