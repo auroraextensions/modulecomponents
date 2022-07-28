@@ -20,7 +20,6 @@ namespace AuroraExtensions\ModuleComponents\Model\Config\Source\Select;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
-use const true;
 use function array_flip;
 use function array_walk;
 use function __;
@@ -41,7 +40,6 @@ class VirtualSelect implements OptionSourceInterface
     ) {
         /** @var array $opts */
         $opts = $flip ? array_flip($data) : $data;
-
         array_walk($opts, [
             $this,
             'setOption'

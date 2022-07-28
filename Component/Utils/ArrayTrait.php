@@ -30,8 +30,18 @@ trait ArrayTrait
     /**
      * @param array $data
      * @return array
+     * @deprecated Use {@see flatten()} instead.
      */
     public function flattenArray(array $data = []): array
+    {
+        return $this->flatten($data);
+    }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    private function flatten(array $data): array
     {
         /** @var array $result */
         $result = [];
@@ -39,9 +49,10 @@ trait ArrayTrait
         /** @var mixed $value */
         foreach ($data as $value) {
             if (is_array($value)) {
+                // phpcs:ignore Magento2.Performance.ForeachArrayMerge
                 $result = array_merge(
                     $result,
-                    $this->flattenArray($value)
+                    $this->flatten($value)
                 );
             } else {
                 $result[] = $value;
