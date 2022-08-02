@@ -18,19 +18,15 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Component\Repository;
 
-use AuroraExtensions\ModuleComponents\{
-    Api\AbstractCollectionInterface,
-    Api\AbstractCollectionInterfaceFactory
-};
-use Magento\Framework\{
-    Api\Filter,
-    Api\SearchCriteriaInterface,
-    Api\SearchResultsInterface,
-    Api\SearchResultsInterfaceFactory,
-    Api\Search\FilterGroup,
-    Api\SortOrder,
-    DataObject
-};
+use AuroraExtensions\ModuleComponents\Api\AbstractCollectionInterface;
+use AuroraExtensions\ModuleComponents\Api\AbstractCollectionInterfaceFactory;
+use Magento\Framework\Api\Filter;
+use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Api\SearchResultsInterface;
+use Magento\Framework\Api\SearchResultsInterfaceFactory;
+use Magento\Framework\Api\Search\FilterGroup;
+use Magento\Framework\Api\SortOrder;
+use Magento\Framework\DataObject;
 
 trait AbstractRepositoryTrait
 {
@@ -89,7 +85,10 @@ trait AbstractRepositoryTrait
 
         /** @var FilterGroup $group */
         foreach ($groups as $group) {
-            $this->addFilterGroupToCollection($group, $collection);
+            $this->addFilterGroupToCollection(
+                $group,
+                $collection
+            );
         }
 
         /** @var SortOrder[] $sortOrders */
@@ -97,11 +96,8 @@ trait AbstractRepositoryTrait
 
         /** @var SortOrder $sortOrder */
         foreach ($sortOrders as $sortOrder) {
-            /** @var string $field */
-            $field = $sortOrder->getField();
-
             $collection->addOrder(
-                $field,
+                $sortOrder->getField(),
                 $this->getDirection($sortOrder->getDirection())
             );
         }
