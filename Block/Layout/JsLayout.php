@@ -1,6 +1,6 @@
 <?php
 /**
- * JsLayoutInterface.php
+ * JsLayout.php
  *
  * NOTICE OF LICENSE
  *
@@ -11,7 +11,7 @@
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
  * @package     AuroraExtensions\ModuleComponents\Block\Layout
- * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
+ * @copyright   Copyright (C) 2022 Aurora Extensions <support@auroraextensions.com>
  * @license     MIT
  */
 declare(strict_types=1);
@@ -19,18 +19,12 @@ declare(strict_types=1);
 namespace AuroraExtensions\ModuleComponents\Block\Layout;
 
 use AuroraExtensions\ModuleComponents\Api\JsLayoutInterface;
-use Magento\Framework\{
-    Serialize\Serializer\Json,
-    View\Element\Template,
-    View\Element\Template\Context
-};
-use function is_array;
+use Magento\Framework\Serialize\Serializer\Json;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Element\Template\Context;
 
 class JsLayout extends Template implements JsLayoutInterface
 {
-    /** @var array $jsLayout */
-    private $jsLayout;
-
     /** @var Json $serializer */
     private $serializer;
 
@@ -45,9 +39,11 @@ class JsLayout extends Template implements JsLayoutInterface
         Json $serializer,
         array $data = []
     ) {
-        parent::__construct($context, $data);
+        parent::__construct(
+            $context,
+            $data
+        );
         $this->serializer = $serializer;
-        $this->jsLayout = is_array($data['jsLayout'] ?? null) ? $data['jsLayout'] : [];
     }
 
     /**
