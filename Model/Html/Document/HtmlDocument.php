@@ -45,6 +45,6 @@ class HtmlDocument implements HtmlDocumentInterface
             'version' => $version,
             'encoding' => $encoding,
         ]);
-        $this->document->loadXML($html);
+        $this->document->loadHTML($html);
     }
 }

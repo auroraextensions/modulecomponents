@@ -21,6 +21,7 @@ namespace AuroraExtensions\ModuleComponents\Api;
 use DOMDocument;
 use DOMElement;
 
+#[Stringable]
 interface HtmlDocumentInterface
 {
     public const XML_ROOT_NODE = '<form></form>';
@@ -98,4 +99,9 @@ interface HtmlDocumentInterface
         array $elements,
         ?DOMElement $parent = null
     ): array;
+
+    /**
+     * @return string
+     */
+    public function __toString(): string;
 }

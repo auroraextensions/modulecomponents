@@ -167,4 +167,12 @@ trait HtmlDocumentTrait
 
         return $elements;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string) $this->getDocument()->saveHTML();
+    }
 }
