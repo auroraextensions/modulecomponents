@@ -12,7 +12,7 @@
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
  * @package     AuroraExtensions\ModuleComponents
- * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
+ * @copyright   Copyright (C) 2022 Aurora Extensions <support@auroraextensions.com>
  * @license     MIT
  */
 -->
@@ -21,4 +21,7 @@
                 type="AuroraExtensions\ModuleComponents\Model\Config\Deployment\LocalizedScopeDeploymentConfig"/>
     <preference for="AuroraExtensions\ModuleComponents\Api\HtmlDocumentInterface"
                 type="AuroraExtensions\ModuleComponents\Model\Html\Document\HtmlDocument"/>
+    <preference for="AuroraExtensions\ModuleComponents\Api\VariableRepositoryInterface"
+                type="AuroraExtensions\ModuleComponents\Model\Repository\VariableRepository"/>
+    <preference for="AuroraExtensions\ModuleComponents\Api\Data\VariableSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 </config>
