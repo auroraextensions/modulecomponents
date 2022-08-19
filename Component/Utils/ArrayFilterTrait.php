@@ -54,7 +54,7 @@ trait ArrayFilterTrait
      * @param array $values
      * @return array
      */
-    private static function filterValues(
+    private function filterValues(
         array $data,
         array $values = []
     ): array {
