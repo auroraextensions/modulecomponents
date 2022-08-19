@@ -34,6 +34,21 @@ use function __;
 
 class VariableRepository implements VariableRepositoryInterface
 {
+    /** @var CollectionFactory $collectionFactory */
+    private $collectionFactory;
+
+    /** @var ExceptionFactory $exceptionFactory */
+    private $exceptionFactory;
+
+    /** @var VariableFactory $variableFactory */
+    private $variableFactory;
+
+    /** @var VariableResource $variableResource */
+    private $variableResource;
+
+    /** @var VariableSearchResultsInterfaceFactory $searchResultsFactory */
+    private $searchResultsFactory;
+
     /**
      * @param CollectionFactory $collectionFactory
      * @param ExceptionFactory $exceptionFactory
@@ -41,17 +56,20 @@ class VariableRepository implements VariableRepositoryInterface
      * @param VariableResource $variableResource
      * @param VariableSearchResultsInterfaceFactory $searchResultsFactory
      * @return void
-     *
-     * phpcs:ignore Magento2.CodeAnalysis.EmptyBlock
-     * phpcs:ignore Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore
      */
     public function __construct(
-        private readonly CollectionFactory $collectionFactory,
-        private readonly ExceptionFactory $exceptionFactory,
-        private readonly VariableFactory $variableFactory,
-        private readonly VariableResource $variableResource,
-        private readonly VariableSearchResultsInterfaceFactory $searchResultsFactory
-    ) {}
+        CollectionFactory $collectionFactory,
+        ExceptionFactory $exceptionFactory,
+        VariableFactory $variableFactory,
+        VariableResource $variableResource,
+        VariableSearchResultsInterfaceFactory $searchResultsFactory
+    ) {
+        $this->collectionFactory = $collectionFactory;
+        $this->exceptionFactory = $exceptionFactory;
+        $this->variableFactory = $variableFactory;
+        $this->variableResource = $variableResource;
+        $this->searchResultsFactory = $searchResultsFactory;
+    }
 
     /**
      * @param string $code
