@@ -81,18 +81,20 @@ class VirtualCompositeObject extends VirtualObjectPool implements CompositeObjec
 
     /**
      * @param string $name
-     * @param array $args
+     * @param array $arguments
      * @return mixed
      */
     #[\ReturnTypeWillChange]
-    public function __call(string $name, array $args)
-    {
+    public function __call(
+        string $name,
+        array $arguments
+    ) {
         /** @var object|null $object */
         $object = $this->resolve($name);
 
         /** @var string $method */
         $method = $this->methods[$name] ?? $name;
         return $object !== null
-            ? $object->{$method}(...$args) : null;
+            ? $object->{$method}(...$arguments) : null;
     }
 }
