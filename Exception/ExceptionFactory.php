@@ -19,21 +19,16 @@ declare(strict_types=1);
 namespace AuroraExtensions\ModuleComponents\Exception;
 
 use Exception;
+use Magento\Framework\ObjectManagerInterface;
+use Magento\Framework\Phrase;
 use Throwable;
-use Magento\Framework\{
-    ObjectManagerInterface,
-    Phrase
-};
 
 use function is_subclass_of;
 use function __;
 
 class ExceptionFactory
 {
-    /** @constant string ERROR_DEFAULT_MSG */
     private const ERROR_DEFAULT_MSG = 'An error occurred. Unable to process the request.';
-
-    /** @constant string ERROR_INVALID_TYPE */
     private const ERROR_INVALID_TYPE = 'Invalid exception class type %1 was given.';
 
     /** @var ObjectManagerInterface $objectManager */
@@ -66,17 +61,17 @@ class ExceptionFactory
 
         if (!is_subclass_of($type, Throwable::class)) {
             throw new Exception(
-                __(
+                (string) __(
                     static::ERROR_INVALID_TYPE,
                     $type
-                )->__toString()
+                )
             );
         }
 
         if ($type !== Exception::class) {
             $arguments['phrase'] = $message;
         } else {
-            $arguments['message'] = $message->__toString();
+            $arguments['message'] = (string) $message;
         }
 
         return $this->objectManager->create($type, $arguments);
