@@ -27,12 +27,12 @@ use Magento\Framework\{
 interface AbstractRepositoryInterface
 {
     /**
-     * @param \Magento\Framework\Api\Search\FilterGroup $group
+     * @param \Magento\Framework\Api\Search\FilterGroup $filterGroup
      * @param \AuroraExtensions\ModuleComponents\Api\AbstractCollectionInterface $collection
      * @return void
      */
     public function addFilterGroupToCollection(
-        FilterGroup $group,
+        FilterGroup $filterGroup,
         AbstractCollectionInterface $collection
     ): void;
 

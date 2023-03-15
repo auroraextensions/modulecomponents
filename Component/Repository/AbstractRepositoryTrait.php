@@ -40,7 +40,7 @@ trait AbstractRepositoryTrait
      * {@inheritdoc}
      */
     public function addFilterGroupToCollection(
-        FilterGroup $group,
+        FilterGroup $filterGroup,
         AbstractCollectionInterface $collection
     ): void {
         /** @var array $fields */
@@ -50,7 +50,7 @@ trait AbstractRepositoryTrait
         $params = [];
 
         /** @var Filter $filter */
-        foreach ($group->getFilters() as $filter) {
+        foreach ($filterGroup->getFilters() as $filter) {
             $fields[] = $filter->getField();
 
             /** @var string $param */
@@ -68,8 +68,7 @@ trait AbstractRepositoryTrait
         string $direction = SortOrder::SORT_DESC
     ): string {
         return $direction === SortOrder::SORT_ASC
-            ? SortOrder::SORT_ASC
-            : SortOrder::SORT_DESC;
+            ? SortOrder::SORT_ASC : SortOrder::SORT_DESC;
     }
 
     /**
@@ -80,13 +79,13 @@ trait AbstractRepositoryTrait
         /** @var AbstractCollectionInterface $collection */
         $collection = $this->collectionFactory->create();
 
-        /** @var FilterGroup[] $groups */
-        $groups = $criteria->getFilterGroups();
+        /** @var FilterGroup[] $filterGroups */
+        $filterGroups = $criteria->getFilterGroups();
 
-        /** @var FilterGroup $group */
-        foreach ($groups as $group) {
+        /** @var FilterGroup $filterGroup */
+        foreach ($filterGroups as $filterGroup) {
             $this->addFilterGroupToCollection(
-                $group,
+                $filterGroup,
                 $collection
             );
         }
