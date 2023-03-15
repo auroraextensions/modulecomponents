@@ -31,9 +31,9 @@ use function is_array;
 use function is_iterable;
 use function is_scalar;
 use function is_string;
-use function strlen;
 use function str_pad;
 use function str_replace;
+use function strlen;
 use function vsprintf;
 
 use const DIRECTORY_SEPARATOR;
