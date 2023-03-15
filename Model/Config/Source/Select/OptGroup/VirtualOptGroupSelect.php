@@ -79,7 +79,7 @@ class VirtualOptGroupSelect implements OptionSourceInterface
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function toOptionArray()
     {
