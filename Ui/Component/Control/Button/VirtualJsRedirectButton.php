@@ -26,14 +26,14 @@ use function __;
 
 class VirtualJsRedirectButton implements ButtonProviderInterface
 {
-    /** @var string|null $entityKey */
-    private $entityKey;
-
     /** @var string $htmlClass */
     private $htmlClass;
 
     /** @var string $label */
     private $label;
+
+    /** @var array $paramList */
+    private $paramList;
 
     /** @var RequestInterface $request */
     private $request;
@@ -44,9 +44,6 @@ class VirtualJsRedirectButton implements ButtonProviderInterface
     /** @var int $sortOrder */
     private $sortOrder;
 
-    /** @var string|null $targetKey */
-    private $targetKey;
-
     /** @var UrlInterface $urlBuilder */
     private $urlBuilder;
 
@@ -56,8 +53,7 @@ class VirtualJsRedirectButton implements ButtonProviderInterface
      * @param string $label
      * @param string $htmlClass
      * @param string $routePath
-     * @param string|null $entityKey
-     * @param string|null $targetKey
+     * @param array $paramList
      * @param int $sortOrder
      * @return void
      */
@@ -67,8 +63,7 @@ class VirtualJsRedirectButton implements ButtonProviderInterface
         string $label = '',
         string $htmlClass = 'button',
         string $routePath = '*',
-        ?string $entityKey = null,
-        ?string $targetKey = null,
+        array $paramList = [],
         int $sortOrder = 10
     ) {
         $this->request = $request;
@@ -76,8 +71,7 @@ class VirtualJsRedirectButton implements ButtonProviderInterface
         $this->label = $label;
         $this->htmlClass = $htmlClass;
         $this->routePath = $routePath;
-        $this->entityKey = $entityKey;
-        $this->targetKey = $targetKey ?? $entityKey;
+        $this->paramList = $paramList;
         $this->sortOrder = $sortOrder;
     }
 
@@ -102,10 +96,14 @@ class VirtualJsRedirectButton implements ButtonProviderInterface
         /** @var array $params */
         $params = [];
 
-        if (!empty($this->entityKey)) {
-            /** @var int|string|null $paramValue */
-            $paramValue = $this->request->getParam($this->entityKey);
-            $params += [$this->targetKey => $paramValue];
+        /** @var string $alias */
+        /** @var string|null $param */
+        foreach ($this->paramList as $alias => $param) {
+            $param = $param ?? $alias;
+
+            /** @var mixed $value */
+            $value = $this->request->getParam($param);
+            $params += [$alias => $value];
         }
 
         /** @var string $targetUrl */
