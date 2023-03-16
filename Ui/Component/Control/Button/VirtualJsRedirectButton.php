@@ -18,7 +18,6 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Ui\Component\Control\Button;
 
-use AuroraExtensions\ModuleComponents\Model\Utils\PathUtils;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
@@ -27,12 +26,6 @@ use function __;
 
 class VirtualJsRedirectButton implements ButtonProviderInterface
 {
-    /** @var string $action */
-    private $action;
-
-    /** @var string $controller */
-    private $controller;
-
     /** @var string|null $entityKey */
     private $entityKey;
 
@@ -42,14 +35,11 @@ class VirtualJsRedirectButton implements ButtonProviderInterface
     /** @var string $label */
     private $label;
 
-    /** @var PathUtils $pathUtils */
-    private $pathUtils;
-
     /** @var RequestInterface $request */
     private $request;
 
-    /** @var string $route */
-    private $route;
+    /** @var string $routePath */
+    private $routePath;
 
     /** @var int $sortOrder */
     private $sortOrder;
@@ -61,40 +51,31 @@ class VirtualJsRedirectButton implements ButtonProviderInterface
     private $urlBuilder;
 
     /**
-     * @param PathUtils $pathUtils
      * @param RequestInterface $request
      * @param UrlInterface $urlBuilder
      * @param string $label
      * @param string $htmlClass
-     * @param string $route
-     * @param string $controller
-     * @param string $action
+     * @param string $routePath
      * @param string|null $entityKey
      * @param string|null $targetKey
      * @param int $sortOrder
      * @return void
      */
     public function __construct(
-        PathUtils $pathUtils,
         RequestInterface $request,
         UrlInterface $urlBuilder,
         string $label = '',
         string $htmlClass = 'button',
-        string $route = '*',
-        string $controller = '*',
-        string $action = '*',
+        string $routePath = '*',
         ?string $entityKey = null,
         ?string $targetKey = null,
         int $sortOrder = 10
     ) {
-        $this->pathUtils = $pathUtils;
         $this->request = $request;
         $this->urlBuilder = $urlBuilder;
         $this->label = $label;
         $this->htmlClass = $htmlClass;
-        $this->route = $route;
-        $this->controller = $controller;
-        $this->action = $action;
+        $this->routePath = $routePath;
         $this->entityKey = $entityKey;
         $this->targetKey = $targetKey ?? $entityKey;
         $this->sortOrder = $sortOrder;
@@ -127,15 +108,8 @@ class VirtualJsRedirectButton implements ButtonProviderInterface
             $params += [$this->targetKey => $paramValue];
         }
 
-        /** @var string $route */
-        $route = $this->pathUtils->build(
-            $this->route,
-            $this->controller,
-            $this->action
-        );
-
         /** @var string $targetUrl */
-        $targetUrl = $this->urlBuilder->getUrl($route, $params);
+        $targetUrl = $this->urlBuilder->getUrl($this->routePath, $params);
         return "(function(){window.location.href='{$targetUrl}';})();";
     }
 }
