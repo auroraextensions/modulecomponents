@@ -18,13 +18,18 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Model\Config\Source\Select;
 
+use ArrayIterator;
+use Countable;
+use IteratorAggregate;
 use Magento\Framework\Data\OptionSourceInterface;
+use Traversable;
 
+use function __;
 use function array_flip;
 use function array_walk;
-use function __;
+use function count;
 
-class VirtualSelect implements OptionSourceInterface
+class VirtualSelect implements OptionSourceInterface, IteratorAggregate, Countable
 {
     /** @var array $options */
     private $options = [];
@@ -60,10 +65,26 @@ class VirtualSelect implements OptionSourceInterface
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function toOptionArray()
     {
         return $this->options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIterator(): Traversable
+    {
+        return new ArrayIterator($this->options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function count(): int
+    {
+        return count($this->options);
     }
 }
