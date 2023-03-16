@@ -18,13 +18,18 @@ declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Model\Config\Source\Select\OptGroup;
 
+use ArrayIterator;
+use Countable;
+use IteratorAggregate;
 use Magento\Framework\Data\OptionSourceInterface;
+use Traversable;
 
 use function __;
 use function array_walk;
+use function count;
 use function is_array;
 
-class VirtualOptGroupSelect implements OptionSourceInterface
+class VirtualOptGroupSelect implements OptionSourceInterface, IteratorAggregate, Countable
 {
     /** @var array $options */
     private $options = [];
@@ -84,5 +89,21 @@ class VirtualOptGroupSelect implements OptionSourceInterface
     public function toOptionArray()
     {
         return $this->options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIterator(): Traversable
+    {
+        return new ArrayIterator($this->options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function count(): int
+    {
+        return count($this->options);
     }
 }
