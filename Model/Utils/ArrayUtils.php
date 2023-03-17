@@ -25,9 +25,10 @@ use function array_diff_key;
 use function array_filter;
 use function array_flip;
 use function array_intersect_key;
-use function array_keys;
 use function array_key_exists;
+use function array_keys;
 use function array_map;
+use function array_merge;
 use function array_pop;
 use function array_slice;
 use function array_values;
@@ -145,6 +146,66 @@ class ArrayUtils
         }
 
         return null;
+    }
+
+    /**
+     * @param array $data
+     * @param string $path
+     * @param string $glue
+     * @param callable|null $func
+     * @return array
+     */
+    public function squash(
+        array $data,
+        string $path = '',
+        string $glue = '/',
+        ?callable $func = null
+    ): array {
+        $func = $func ?? 'array_merge';
+
+        if (!empty($path)) {
+            $path .= $glue;
+        }
+
+        /** @var array $result */
+        $result = [];
+
+        /** @var int|string $index */
+        /** @var mixed $value */
+        foreach ($data as $index => $value) {
+            /** @var string $key */
+            $key = $path . $index;
+
+            if (!is_array($value)) {
+                $result[$key] = $value;
+            } else {
+                $result = $func(
+                    $result,
+                    $this->squash(
+                        $value,
+                        $key,
+                        $glue,
+                        $func
+                    )
+                );
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param callable|null $func
+     * @param array[] $arrays
+     * @return array
+     */
+    public function umerge(
+        ?callable $func,
+        array ...$arrays
+    ): array {
+        /** @var array $result */
+        $result = array_merge(...$arrays);
+        return $func ? $func($result) : $result;
     }
 
     /**

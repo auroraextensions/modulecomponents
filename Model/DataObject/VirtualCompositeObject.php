@@ -11,7 +11,7 @@
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
  * @package     AuroraExtensions\ModuleComponents\Model\DataObject
- * @copyright   Copyright (C) 2022 Aurora Extensions <support@auroraextensions.com>
+ * @copyright   Copyright (C) 2023 Aurora Extensions <support@auroraextensions.com>
  * @license     MIT
  */
 declare(strict_types=1);
@@ -48,7 +48,7 @@ class VirtualCompositeObject extends VirtualObjectPool implements CompositeObjec
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function resolve(string $method)
     {
