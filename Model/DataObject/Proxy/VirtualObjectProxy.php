@@ -11,7 +11,7 @@
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
  * @package     AuroraExtensions\ModuleComponents\Model\DataObject\Proxy
- * @copyright   Copyright (C) 2022 Aurora Extensions <support@auroraextensions.com>
+ * @copyright   Copyright (C) 2023 Aurora Extensions <support@auroraextensions.com>
  * @license     MIT
  */
 declare(strict_types=1);
