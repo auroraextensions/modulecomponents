@@ -12,13 +12,14 @@
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
  * @package     AuroraExtensions\ModuleComponents
- * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
+ * @copyright   Copyright (C) 2023 Aurora Extensions <support@auroraextensions.com>
  * @license     MIT
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="AuroraExtensions_ModuleComponents" setup_version="1.0.0">
+    <module name="AuroraExtensions_ModuleComponents">
         <sequence>
+            <module name="Magento_Eav"/>
             <module name="Magento_Ui"/>
         </sequence>
     </module>
