@@ -15,10 +15,24 @@
  */
 define([
     'jquery',
-    'mage/translate',
-    'AuroraExtensions_ModuleComponents/js/model/messages'
-], function ($, $t, messageContainer) {
+    'AuroraExtensions_ModuleComponents/js/view/messages'
+], function ($, messageManager) {
     'use strict';
+
+    /** @var {Function} addErrorMessages */
+    var addErrorMessages = function (response) {
+        /** @var {Array} messages */
+        let messages = Array.isArray(response.messages)
+            ? response.messages : [];
+
+        if (response.message) {
+            messages.push(response.message);
+        }
+
+        messages.forEach(function (message) {
+            messageManager.addErrorMessage(message);
+        });
+    };
 
     return function () {
         $.ajaxSetup({
@@ -28,13 +42,7 @@ define([
              */
             error: function (response) {
                 if (response.error) {
-                    /** @var {Array} messages */
-                    let messages = Array.isArray(response.messages)
-                        ? response.messages : [];
-
-                    messages.forEach(function (message) {
-                        messageContainer.addErrorMessage({message: $t(message)});
-                    });
+                    addErrorMessages(response);
                 }
             },
             /**
@@ -47,13 +55,7 @@ define([
                 }
 
                 if (response.error) {
-                    /** @var {Array} messages */
-                    let messages = Array.isArray(response.messages)
-                        ? response.messages : [];
-
-                    messages.forEach(function (message) {
-                        messageContainer.addErrorMessage({message: $t(message)});
-                    });
+                    addErrorMessages(response);
                 }
             }
         });
