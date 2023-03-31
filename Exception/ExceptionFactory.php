@@ -23,8 +23,8 @@ use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Phrase;
 use Throwable;
 
-use function is_subclass_of;
 use function __;
+use function is_subclass_of;
 
 class ExceptionFactory
 {
@@ -51,18 +51,18 @@ class ExceptionFactory
      */
     public function create(
         string $type = Exception::class,
-        Phrase $message = null
+        ?Phrase $message = null
     ) {
         /** @var array $arguments */
         $arguments = [];
 
         /* Set default message, as required. */
-        $message = $message ?? __(static::ERROR_DEFAULT_MSG);
+        $message = $message ?? __(self::ERROR_DEFAULT_MSG);
 
         if (!is_subclass_of($type, Throwable::class)) {
             throw new Exception(
                 (string) __(
-                    static::ERROR_INVALID_TYPE,
+                    self::ERROR_INVALID_TYPE,
                     $type
                 )
             );
