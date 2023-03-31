@@ -20,4 +20,8 @@ namespace AuroraExtensions\ModuleComponents\Api;
 
 interface AbstractResourceInterface
 {
+    /**
+     * @return \Magento\Framework\DB\Adapter\AdapterInterface
+     */
+    public function getConnection();
 }
