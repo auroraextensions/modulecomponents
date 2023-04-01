@@ -23,5 +23,8 @@
                 type="AuroraExtensions\ModuleComponents\Model\Html\Document\HtmlDocument"/>
     <preference for="AuroraExtensions\ModuleComponents\Api\VariableRepositoryInterface"
                 type="AuroraExtensions\ModuleComponents\Model\Repository\VariableRepository"/>
-    <preference for="AuroraExtensions\ModuleComponents\Api\Data\VariableSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="AuroraExtensions\ModuleComponents\Api\Data\VariableSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <preference for="AuroraExtensions\ModuleComponents\Api\AreaEmulatorInterface"
+                type="AuroraExtensions\ModuleComponents\Model\State\VirtualAreaEmulator"/>
 </config>
