@@ -1,6 +1,6 @@
 <?php
 /**
- * JsLayoutInterface.php
+ * JsLayoutProcessorInterface.php
  *
  * NOTICE OF LICENSE
  *
@@ -11,22 +11,18 @@
  * https://docs.auroraextensions.com/magento/extensions/2.x/modulecomponents/LICENSE.txt
  *
  * @package     AuroraExtensions\ModuleComponents\Api
- * @copyright   Copyright (C) 2021 Aurora Extensions <support@auroraextensions.com>
+ * @copyright   Copyright (C) 2023 Aurora Extensions <support@auroraextensions.com>
  * @license     MIT
  */
 declare(strict_types=1);
 
 namespace AuroraExtensions\ModuleComponents\Api;
 
-interface JsLayoutInterface
+interface JsLayoutProcessorInterface
 {
     /**
-     * @return string
+     * @param array $jsLayout
+     * @return array
      */
-    public function getJsLayout(): string;
-
-    /**
-     * @return string
-     */
-    public function getRegion(): string;
+    public function process(array $jsLayout): array;
 }
