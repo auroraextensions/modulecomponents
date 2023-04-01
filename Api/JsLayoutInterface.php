@@ -24,4 +24,9 @@ interface JsLayoutInterface
      * @return string
      */
     public function getJsLayout(): string;
+
+    /**
+     * @return string
+     */
+    public function getRegion(): string;
 }
