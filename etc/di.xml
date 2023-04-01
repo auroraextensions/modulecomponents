@@ -27,4 +27,6 @@
                 type="Magento\Framework\Api\SearchResults"/>
     <preference for="AuroraExtensions\ModuleComponents\Api\AreaEmulatorInterface"
                 type="AuroraExtensions\ModuleComponents\Model\State\VirtualAreaEmulator"/>
+    <preference for="AuroraExtensions\ModuleComponents\Api\AreaConfigProviderInterface"
+                type="AuroraExtensions\ModuleComponents\Model\State\AreaConfigProvider"/>
 </config>
