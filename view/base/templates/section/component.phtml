@@ -1,0 +1,22 @@
+<?php
+/**
+ * component.phtml
+ *
+ * @package     AuroraExtensions\ModuleComponents
+ * @copyright   Copyright (C) 2023 Aurora Extensions <support@auroraextensions.com>
+ */
+
+/** @var \AuroraExtensions\ModuleComponents\Block\Layout\JsLayout $block */
+?>
+<div data-bind="scope: '<?= $block->getRegion() ?>'" data-role="<?= $block->getRegion() ?>">
+    <!-- ko if: hasTemplate() -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!-- /ko -->
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+            }
+        }
+    </script>
+</div>
