@@ -21,6 +21,7 @@ namespace AuroraExtensions\ModuleComponents\Model\Security;
 use InvalidArgumentException;
 use RuntimeException;
 
+use function gettype;
 use function hash_algos;
 use function hash_final;
 use function hash_init;
@@ -33,23 +34,14 @@ use function random_bytes;
 
 final class HashContext
 {
-    /** @constant string HASH_ALGO */
     public const HASH_ALGO = 'sha256';
-
-    /** @constant int MIN_BYTES */
     public const MIN_BYTES = 8;
-
-    /** @var string $algo */
-    private $algo;
 
     /** @var bool $closed */
     private $closed = false;
 
     /** @var \HashContext|resource $ctx */
     private $ctx;
-
-    /** @var string|resource $data */
-    private $data;
 
     /** @var string $digest */
     private $digest;
@@ -63,26 +55,17 @@ final class HashContext
         $data = null,
         string $algo = self::HASH_ALGO
     ) {
-        $this->data = $data ?: random_bytes(self::MIN_BYTES);
-        $this->algo = $algo;
-        $this->initialize();
-    }
-
-    /**
-     * @return void
-     * @throws InvalidArgumentException
-     */
-    private function initialize(): void
-    {
         /** @var string[] $algos */
         $algos = hash_algos();
 
-        if (!in_array($this->algo, $algos)) {
+        if (!in_array($algo, $algos)) {
             throw new InvalidArgumentException('Invalid hashing algorithm.');
         }
 
-        $this->ctx = hash_init($this->algo);
-        $this->ingest($this->data);
+        $this->ctx = hash_init($algo);
+        $this->ingest(
+            $data ?? random_bytes(self::MIN_BYTES)
+        );
     }
 
     /**
@@ -94,12 +77,19 @@ final class HashContext
     public function ingest($data): HashContext
     {
         if ($this->closed) {
-            throw new RuntimeException('Unable to ingest data, hash context is closed.');
+            throw new RuntimeException(
+                'Unable to ingest additional data, hash context is closed.'
+            );
         }
 
         if (!is_string($data)) {
             if (!is_resource($data)) {
-                throw new InvalidArgumentException('Invalid argument type, must be string or resource.');
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'Invalid argument type. Must be "string" or "resource", "%s" given.',
+                        gettype($data)
+                    )
+                );
             }
 
             hash_update_stream($this->ctx, $data);
