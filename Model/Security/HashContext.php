@@ -31,6 +31,7 @@ use function in_array;
 use function is_resource;
 use function is_string;
 use function random_bytes;
+use function sprintf;
 
 final class HashContext
 {
