@@ -43,16 +43,16 @@ class VirtualDataProvider extends AbstractDataProvider implements IteratorAggreg
      */
     use ModifierPoolTrait;
 
-    private const ACTION_TMPL = '%s';
+    private const ACTION_TMPL = '%s%s';
     private const SUBMIT_URL_TMPL = '%s/%s/%s';
     private const VAR_TMPL = '{{action}}';
     private const WILDCARD = '*';
 
+    /** @var string $actionSuffix */
+    private $actionSuffix;
+
     /** @var string $actionTmpl */
     private $actionTmpl;
-
-    /** @var string $variableTmpl */
-    private $variableTmpl;
 
     /** @var array $cache */
     private $cache = [];
@@ -84,6 +84,9 @@ class VirtualDataProvider extends AbstractDataProvider implements IteratorAggreg
     /** @var string $submitUrlTmpl */
     private $submitUrlTmpl;
 
+    /** @var string $variableTmpl */
+    private $variableTmpl;
+
     /**
      * @param string $name
      * @param string $primaryFieldName
@@ -96,6 +99,7 @@ class VirtualDataProvider extends AbstractDataProvider implements IteratorAggreg
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param StringUtils $stringUtils
      * @param string $actionTmpl
+     * @param string $actionSuffix
      * @param string $submitUrlTmpl
      * @param string $variableTmpl
      * @param array $conditionTypes
@@ -118,6 +122,7 @@ class VirtualDataProvider extends AbstractDataProvider implements IteratorAggreg
         SearchCriteriaBuilder $searchCriteriaBuilder,
         StringUtils $stringUtils,
         string $actionTmpl = self::ACTION_TMPL,
+        string $actionSuffix = '',
         string $submitUrlTmpl = self::SUBMIT_URL_TMPL,
         string $variableTmpl = self::VAR_TMPL,
         array $conditionTypes = [],
@@ -140,6 +145,7 @@ class VirtualDataProvider extends AbstractDataProvider implements IteratorAggreg
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->stringUtils = $stringUtils;
         $this->actionTmpl = $actionTmpl;
+        $this->actionSuffix = $actionSuffix;
         $this->variableTmpl = $variableTmpl;
         $this->submitUrlTmpl = $submitUrlTmpl;
         $this->conditionTypes = $conditionTypes;
@@ -165,18 +171,21 @@ class VirtualDataProvider extends AbstractDataProvider implements IteratorAggreg
                     : $this->request->getParam($param);
 
                 if (!empty($paramValue)) {
+                    /** @var string $submitUrl */
+                    $submitUrl = $this->data['config']['submit_url'] ?? '';
                     $this->data['config']['submit_url'] = $this->stringUtils->sprintf(
                         $this->submitUrlTmpl,
+                        $submitUrl,
                         $param,
                         $paramValue
                     );
 
                     $this->searchCriteriaBuilder->addFilters([
                         $this->filterBuilder
-                            ->setField($param)
-                            ->setValue($paramValue)
-                            ->setConditionType($this->conditionTypes[$param] ?? 'eq')
-                            ->create(),
+                             ->setField($param)
+                             ->setValue($paramValue)
+                             ->setConditionType($this->conditionTypes[$param] ?? 'eq')
+                             ->create(),
                     ]);
                 }
             }
@@ -191,7 +200,8 @@ class VirtualDataProvider extends AbstractDataProvider implements IteratorAggreg
         /** @var string $actionName */
         $actionName = $this->stringUtils->sprintf(
             $this->actionTmpl,
-            strtolower($this->request->getActionName())
+            strtolower($this->request->getActionName()),
+            $this->actionSuffix
         );
 
         /** @var string $submitUrl */
